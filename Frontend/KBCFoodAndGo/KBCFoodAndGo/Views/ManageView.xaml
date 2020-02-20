@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:views="clr-namespace:ContextMenu.Views;assembly=ContextMenu"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:converters="clr-namespace:KBCFoodAndGo.Shared.Converters;assembly=KBCFoodAndGo.Shared"
+             x:Class="KBCFoodAndGo.Views.ManageView">
+
+    <ContentPage.Resources>
+        <converters:MealCurrencyConverter x:Key="CurrencyConverter"></converters:MealCurrencyConverter>
+        <converters:CollectionViewWidthConverter x:Key="CollectionViewFitWidthConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <AbsoluteLayout>
+                <CollectionView ItemsSource="{Binding Meals}" x:Name="CollectionView"
+                          Margin="0, 5, 0, 0"
+                          SelectionMode="Single"
+                          SelectionChangedCommand="{Binding Path=BindingContext.SelectionChanged }">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <views:SwipeActionContextHolder MovedCommand="{Binding BindingContext.OnDelete, Source={x:Reference CollectionView}}">
+                                <views:SwipeActionContextMenuView ForceCloseCommand="{Binding ForceCloseCommand}">
+                                    <views:SwipeActionContextMenuView.View>
+                                        <Frame BackgroundColor="White"
+                                   Margin="5"
+                                   Padding="20"
+                                   WidthRequest="{Binding Source={x:Reference CollectionView}, Path=Width, Converter={StaticResource CollectionViewFitWidthConverter}, ConverterParameter='50'}"
+                                   CornerRadius="10">
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.SelectionChanged}" CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
+                                            <StackLayout Orientation="Horizontal" 
+                                             HorizontalOptions="FillAndExpand"
+                                             Spacing="10">
+                                                <Frame HeightRequest="80"
+                                           WidthRequest="80"
+                                           CornerRadius="30"
+                                           Padding="0"
+                                           VerticalOptions="CenterAndExpand"
+                                           IsClippedToBounds="true">
+                                                    <forms:CachedImage 
+                                                        DownsampleToViewSize="true"
+                                                        Source="{Binding ImageUrl}"
+                                                        Aspect="AspectFill">
+                                                    </forms:CachedImage>
+                                                </Frame>
+                                                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Margin="5,5,10,5" FontAttributes="Bold" TextColor="#003665" FontSize="Small" Text="Naam:"></Label>
+                                                        <Label Margin="5" FontAttributes="Bold" TextColor="#003665" FontSize="Small" Text="{Binding Name}"></Label>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Margin="5,5,15,5" FontAttributes="Bold" TextColor="#003665" FontSize="Small" Text="Prijs:"></Label>
+                                                        <Label Margin="5" FontAttributes="Bold" TextColor="#003665" FontSize="Small" Text="{Binding Price, Converter={StaticResource CurrencyConverter}}"></Label>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </views:SwipeActionContextMenuView.View>
+                                    <views:SwipeActionContextMenuView.ContextTemplate>
+                                        <DataTemplate>
+                                            <Frame Margin="15, 5"
+                                                           IsClippedToBounds="true"
+                                                           CornerRadius="10"
+                                                           BackgroundColor="Red">
+                                                <StackLayout 
+                                                            Padding="10, 0"
+                                                            Margin="0, 5">
+                                                    <Label Text="SWIPE TO DELETE"
+                                                                   TextColor="White"
+                                                                   FontAttributes="Bold"
+                                                                   VerticalOptions="CenterAndExpand"
+                                                                   HorizontalOptions="EndAndExpand"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </views:SwipeActionContextMenuView.ContextTemplate>
+                                </views:SwipeActionContextMenuView>
+                            </views:SwipeActionContextHolder>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <StackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1">
+                    <StackLayout IsVisible="{Binding ShowAddOptions}">
+                        <Button FontFamily="Museo Sans" CornerRadius="30" HeightRequest="45" FontAttributes="Bold" TextColor="White" BackgroundColor="#2196F3" Text="Nieuwe maaltijd" Command="{Binding AddMealCommand}"></Button>
+                        <Button FontFamily="Museo Sans" CornerRadius="30" HeightRequest="45" FontAttributes="Bold" TextColor="White" BackgroundColor="#2196F3" Text="Nieuw menu" Command="{Binding AddMenuCommand}"></Button>
+                    </StackLayout>
+
+                    <ImageButton Source="add.png" BackgroundColor="Transparent" Command="{Binding ShowOptions}"
+                             HeightRequest="50" WidthRequest="50"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
+                             Margin="10" >
+                    </ImageButton>
+                </StackLayout>
+
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

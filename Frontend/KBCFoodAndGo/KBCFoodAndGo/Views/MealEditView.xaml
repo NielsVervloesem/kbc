@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:KBCFoodAndGo.Shared.Converters;assembly=KBCFoodAndGo.Shared"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGo.Views.MealEditView"
+             BindingContext="Meal"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <converters:MealCurrencyConverter x:Key="CurrencyConverter"/>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Command="{Binding DeleteMeal}" IconImageSource="delete.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding Image.Source, Mode=TwoWay}" Grid.Row="0" Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddImage}" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <StackLayout Margin="5,5,5,5" Grid.Row="1" Orientation="Vertical">
+                    <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Naam"></Label>
+                    <Entry Margin="5,0,0,5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding Meal.Name, Mode=TwoWay}"></Entry>
+
+                    <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Beschrijving"></Label>
+                    <Editor Margin="5,0,0,5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" HeightRequest="60" Text="{Binding Meal.ShortDescription, Mode=TwoWay}"></Editor>
+
+                    <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Prijs"></Label>
+                    <Entry Margin="5,0,0,5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding Meal.Price, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}"></Entry>
+
+                    <Button Margin="50,0,50,5" FontFamily="Museo Sans" Command="{Binding AddMeal}" IsEnabled="{Binding EnableAddButton, Mode=TwoWay}" CornerRadius ="20" HeightRequest="45" FontAttributes="Bold" TextColor="White" BackgroundColor="#2196F3" Text="Bevestigen"></Button>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

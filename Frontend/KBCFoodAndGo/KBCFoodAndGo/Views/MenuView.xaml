@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:KBCFoodAndGo.Views;assembly=KBCFoodAndGo"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGo.Views.MenuView"
+             BarBackgroundColor="White"
+             BarTextColor="#00AEEF"
+             SelectedTabColor="#00AEEF"
+             BackgroundColor="White">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Command="{Binding LogOutCommand}"  IconImageSource="logout.png" Text="Afmelden" Priority="0" />
+        <ToolbarItem Order="Primary" IconImageSource="alert.png" Priority="1" />
+    </TabbedPage.ToolbarItems>
+    <TabbedPage.Children>
+        <views:MealsView Title="Menu" BackgroundColor="White"/>
+        <views:MealsHistoryView Title="Geschiedenis" BackgroundColor="White"/>
+    </TabbedPage.Children>
+</TabbedPage>

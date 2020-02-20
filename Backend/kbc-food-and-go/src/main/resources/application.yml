@@ -1,0 +1,5 @@
+amazonProperties:
+  endpointUrl: https://s3.eu-central-1.amazonaws.com/
+  accessKey: AKIATO22OXWLLH5GXUWJ
+  secretKey: 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
+  bucketName: kbc-cdn

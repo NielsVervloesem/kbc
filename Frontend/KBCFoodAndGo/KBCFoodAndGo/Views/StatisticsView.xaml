@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<helpers:TabbedSwipePage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+            xmlns:helpers="clr-namespace:KBCFoodAndGo.Helpers;assembly=KBCFoodAndGo"
+            mc:Ignorable="d"
+            x:Class="KBCFoodAndGo.Views.StatisticsView"
+            BarBackgroundColor="White"
+            BarTextColor="#00AEEF">
+
+    <TabbedPage.Children>
+
+        <ContentPage Title="Verkochte maaltijden">
+            <ContentPage.Content>
+                <forms:ChartView Chart="{Binding  SoldMeals, Mode=TwoWay}" HeightRequest="150" Margin="10,10,10,10"/>
+            </ContentPage.Content>
+        </ContentPage>
+
+        <ContentPage Title="Omzet">
+            <ContentPage.Content>
+                <forms:ChartView Chart="{Binding  ProfitMeals, Mode=TwoWay}" HeightRequest="150" Margin="10,10,10,10"/>
+            </ContentPage.Content>
+        </ContentPage>
+
+        <ContentPage Title="Favoriete maaltijden">
+            <forms:ChartView Chart="{Binding  AllTimeChart, Mode=TwoWay}" HeightRequest="150" Margin="10,10,10,10"/>
+        </ContentPage>
+    </TabbedPage.Children>
+</helpers:TabbedSwipePage>  

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGoResto.Views.NumPadView">
+    <ContentPage.Content>
+        <Grid Padding="0, 5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="2" x:Name="resultText" FontSize="42" FontAttributes="Bold" BackgroundColor="White" Text="{Binding InputCode, Mode=TwoWay}"
+              TextColor="#003665" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+              Grid.ColumnSpan="3" />
+
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="7" Padding="0" Text="7" Grid.Row="1" Grid.Column="2"
+               BackgroundColor="White" TextColor="#003665" 
+               FontSize="36" BorderRadius="100" BorderWidth="1" BorderColor="#003665" Margin="5"/>
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="8" Padding="0" Text="8" Grid.Row="1" Grid.Column="3"
+               BackgroundColor="White" TextColor="#003665" BorderWidth="1" BorderColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="9"  Padding="0" Text="9" Grid.Row="1" Grid.Column="4" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+            <Label  IsVisible="False" Grid.ColumnSpan="2" Grid.Column="5"></Label>
+            
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="4"  Padding="0" Text="4" Grid.Row="2" Grid.Column="2" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="5"  Padding="0" Text="5" Grid.Row="2" Grid.Column="3" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="6" Padding="0" Text="6" Grid.Row="2" Grid.Column="4" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="1" Padding="0" Text="1" Grid.Row="3" Grid.Column="2" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="2" Padding="0" Text="2" Grid.Row="3" Grid.Column="3" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="3" Padding="0" Text="3" Grid.Row="3" Grid.Column="4" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+
+            <Button Command="{Binding ClearCommand}" Text="C" Padding="0" Grid.Row="4" Grid.Column="2" BorderWidth="1" BorderColor="#003665"
+                BackgroundColor="#00AEEF" TextColor="#003665" 
+                FontSize="36" BorderRadius="100" Margin="5"/>
+            <Button Command="{Binding EnterCodeCommand}" CommandParameter="0" Padding="0" Text="0" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" BorderWidth="1" BorderColor="#003665"
+               BackgroundColor="White" TextColor="#003665"
+               FontSize="36" BorderRadius="100" Margin="5"/>
+            <Button Command="{Binding OkCommand}" Text="OK" Grid.Row="4" Grid.Column="4" Padding="0" Grid.ColumnSpan="1" BorderWidth="1" BorderColor="#003665"
+                BackgroundColor="#9CCB65" TextColor="#003665"
+                FontSize="36" BorderRadius="100" Margin="5"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

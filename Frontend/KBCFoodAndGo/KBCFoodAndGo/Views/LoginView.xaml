@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGo.Views.LoginView"
+             BackgroundImageSource="background1.png">
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" Margin="5,50,5,5" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image HeightRequest="150" WidthRequest="150" Source="logo.png"></Image>
+                <Label VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Museo Sans" Text="Food And Go" FontSize="Large" TextColor="White"></Label>
+            </StackLayout>
+            <StackLayout Grid.Row="1" Margin="50,0,0,0" Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                <Label FontFamily="Museo Sans" Text="E-mail" TextColor="White"></Label>
+                <Entry FontFamily="Museo Sans" Margin="5,0,0,0"  Placeholder="Naam" TextColor="#98AEC1" FontSize="Small" Text="{Binding User.Email, Mode=TwoWay}"></Entry>
+                <Label FontFamily="Museo Sans" Text="Wachtwoord" TextColor="White"></Label>
+                <Entry FontFamily="Museo Sans" Margin="5,0,0,0" Placeholder="Wachtwoord" IsPassword="True" TextColor="#98AEC1" WidthRequest="250" FontSize="Small" Text="{Binding User.Password, Mode=TwoWay}"></Entry>
+                <Label IsVisible="{Binding IsVisible, Mode=TwoWay}" Text="{Binding ErrorMessage, Mode=TwoWay}" TextColor="#EF534F" Margin="5,0,0,0"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Grid.Row="2" Margin="5" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                <Button IsEnabled="{Binding Enabled, Mode=TwoWay}" FontFamily="Museo Sans" WidthRequest="250" CornerRadius="20" HeightRequest="40"  FontAttributes="Bold" TextColor="White" BackgroundColor="#00AEEF" Text="Bevestigen" Command="{Binding NavigateToCommand}"/>
+                <Button FontFamily="Museo Sans" WidthRequest="250" CornerRadius="20" HeightRequest="40"  FontAttributes="Bold" TextColor="White" BackgroundColor="#00AEEF" Text="Registreren" Command="{Binding NavigateToCreateUser}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

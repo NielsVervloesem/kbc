@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:behaviors="clr-namespace:KBCFoodAndGo.Shared.Behaviors;assembly=KBCFoodAndGo.Shared"
+             xmlns:converters="clr-namespace:KBCFoodAndGo.Shared.Converters;assembly=KBCFoodAndGo.Shared"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGoResto.Views.EmployeeHelpView">
+
+    <ContentPage.Resources>
+        <converters:ItemTappedConverter x:Key="ItemTappedConverter"></converters:ItemTappedConverter>
+        <converters:MealCurrencyConverter x:Key="CurrencyConverter"></converters:MealCurrencyConverter>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <ListView RowHeight="120" SelectionMode="None" VerticalScrollBarVisibility="Always" ItemsSource="{Binding Meals}" Grid.Column="0">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectionMealChanged}" Converter="{StaticResource ItemTappedConverter}"/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="3" Margin="0" BackgroundColor="{Binding BackgroundColor}">
+                                <Frame Padding="0" Margin="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <forms:CachedImage 
+                                            DownsampleToViewSize="true"
+                                            Source="{Binding ImageUrl}"
+                                            Aspect="AspectFit"
+                                        HeightRequest="120"
+                                        WidthRequest="120">
+                                        </forms:CachedImage>
+                                        <StackLayout>
+                                            <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding Name}"></Label>
+                                            <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium"  Text="{Binding Price, Converter={StaticResource CurrencyConverter}}"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ListView RowHeight="120" SelectedItem="{Binding SelectedUser, Mode=TwoWay}" ItemsSource="{Binding Users}" VerticalScrollBarVisibility="Always" Grid.Column="1">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectionUserChanged}" Converter="{StaticResource ItemTappedConverter}"/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="3" Margin="0" BackgroundColor="{Binding BackgroundColor}">
+                                <Frame Padding="0" Margin="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <forms:CachedImage 
+                                                DownsampleToViewSize="true"
+                                                Source="{Binding ImageUrl}"
+                                                Aspect="AspectFit"
+                                        HeightRequest="120"
+                                        WidthRequest="120">
+                                        </forms:CachedImage>
+                                        <StackLayout>
+                                            <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding FirstName}"></Label>
+                                            <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding LastName}"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontFamily="Museo" Margin="100,0,100,0" CornerRadius="20" FontAttributes="Bold" TextColor="White" BackgroundColor="#00AEEF" Text="Bevestigen" Command="{Binding ConfirmCommand}"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

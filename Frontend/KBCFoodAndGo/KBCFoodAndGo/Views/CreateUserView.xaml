@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGo.Views.CreateUserView">
+    <ContentPage.Content>
+        <ScrollView >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding Image.Source, Mode=TwoWay}" Grid.Row="0" Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddImage}" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+
+                <StackLayout Margin="5,5,5,5" Grid.Row="1" Orientation="Vertical">
+                    <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Naam"></Label>
+                    <Entry Margin="5,0,0,5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding User.FirstName, Mode=TwoWay}"></Entry>
+
+                    <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Achternaam"></Label>
+                    <Entry Margin="5,0,0,5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding User.LastName, Mode=TwoWay}"></Entry>
+
+                    <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Email adress"></Label>
+                    <Entry Margin="5,0,0,5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding User.Email, Mode=TwoWay}"></Entry>
+
+                    <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Wachtwoord"></Label>
+                    <Entry IsPassword="True" Margin="5,0,0,5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding User.Password, Mode=TwoWay}"></Entry>
+
+                    <StackLayout>
+                        <Button Margin="50,0,50,5" FontFamily="Museo Sans" Command="{Binding GoBack}"  CornerRadius ="20" HeightRequest="45" FontAttributes="Bold" TextColor="White" BackgroundColor="#2196F3" Text="Ga terug"></Button>
+                        <Button Margin="50,0,50,5" FontFamily="Museo Sans" Command="{Binding AddUser}"  CornerRadius ="20" HeightRequest="45" FontAttributes="Bold" TextColor="White" BackgroundColor="#2196F3" Text="Bevestigen"></Button>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

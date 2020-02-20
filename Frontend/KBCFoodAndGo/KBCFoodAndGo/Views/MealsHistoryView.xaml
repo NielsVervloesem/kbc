@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:converters="clr-namespace:KBCFoodAndGo.Shared.Converters;assembly=KBCFoodAndGo.Shared"
+             xmlns:helpers="clr-namespace:KBCFoodAndGo.Helpers;assembly=KBCFoodAndGo"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGo.Views.MealsHistoryView">
+
+    <ContentPage.Resources>
+        <converters:MealCurrencyConverter x:Key="CurrencyConverter"></converters:MealCurrencyConverter>
+        <converters:CollectionViewWidthConverter x:Key="CollectionViewFitWidthConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ListView x:Name="ListView"
+                  ItemsSource="{Binding MealHistoryGroup}" 
+                  IsGroupingEnabled="True" 
+                  GroupShortNameBinding="{Binding MealHistoryData}"
+                  GroupDisplayBinding="{Binding MealHistoryData}"
+                  Margin="0, 5, 0, 0"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <helpers:CustomMealViewCell SelectedItemBackgroundColor="LightBlue">
+                        <ViewCell.View>
+                            <Frame  BackgroundColor="White"
+                                    Margin="5"
+                                    Padding="20"
+                                    WidthRequest="{Binding Source={x:Reference ListView}, Path=Width, Converter={StaticResource CollectionViewFitWidthConverter}, ConverterParameter='50'}"
+                                    CornerRadius="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame HeightRequest="80" WidthRequest="80" CornerRadius="30" Padding="0" VerticalOptions="CenterAndExpand" IsClippedToBounds="true">
+                                        <forms:CachedImage DownsampleToViewSize="true" Source="{Binding ImageUrl}" Aspect="AspectFill"></forms:CachedImage>
+                                    </Frame>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Margin="5" FontAttributes="None" TextColor="Black" FontSize="Small" Text="{Binding Name}"></Label>
+                                        <Label Margin="5" FontAttributes="None" TextColor="Black" FontSize="Small" Text="{Binding Price, Converter={StaticResource CurrencyConverter}}"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell.View>
+                    </helpers:CustomMealViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell Height="30">
+                        <StackLayout Padding="5" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label  FontSize="Small" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding MealHistoryData}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

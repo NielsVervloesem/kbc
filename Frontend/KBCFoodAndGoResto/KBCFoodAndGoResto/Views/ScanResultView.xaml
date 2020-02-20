@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:KBCFoodAndGo.Shared.Converters;assembly=KBCFoodAndGo.Shared"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGoResto.Views.ScanResultView">
+
+    <ContentPage.Resources>
+        <converters:MealCurrencyConverter x:Key="CurrencyConverter"></converters:MealCurrencyConverter>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <forms:CachedImage 
+                DownsampleToViewSize="true"
+                Source="{Binding ScannedMeal.ImageUrl}" 
+                Aspect="AspectFit">
+                </forms:CachedImage>
+                <StackLayout Margin="10,5,5,5" Grid.Row="1" HorizontalOptions="Center" Grid.Column="0" Orientation="Vertical">
+                    <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding ScannedMeal.Name}"></Label>
+                    <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium"  Text="{Binding ScannedMeal.Price, Converter={StaticResource CurrencyConverter}}"></Label>
+                </StackLayout>
+
+                <forms:CachedImage 
+                DownsampleToViewSize="true"
+                Source="{Binding ScannedPerson.ImageUrl}" Grid.Row="0" Grid.Column="1"
+
+                Aspect="AspectFit">
+                </forms:CachedImage>
+                <StackLayout Margin="10,5,5,5" Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                        <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding ScannedPerson.FirstName}"></Label>
+                        <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding ScannedPerson.LastName}"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="15,0,15,0">
+                    <Button Grid.Row="0" Grid.Column="0" FontFamily="Museo" CornerRadius="100" WidthRequest="175" HeightRequest="50" FontAttributes="Bold" TextColor="White" BackgroundColor="#00AEEF" Text="Help" Command="{Binding GetHelpCommand}"></Button>
+                    <Button Grid.Row="0" Grid.Column="1" FontFamily="Museo" CornerRadius="100" WidthRequest="175" HeightRequest="50" FontAttributes="Bold" TextColor="White" BackgroundColor="#00AEEF" Text="Rescan" Command="{Binding ReScanCommand}"></Button>
+                    <Button Grid.Row="0" Grid.Column="2" FontFamily="Museo" CornerRadius="100" WidthRequest="175" HeightRequest="50" FontAttributes="Bold" TextColor="White" BackgroundColor="#00AEEF" Text="Bevestigen" Command="{Binding ConfirmCommand}" IsEnabled="{Binding ConfirmClickAble}"></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

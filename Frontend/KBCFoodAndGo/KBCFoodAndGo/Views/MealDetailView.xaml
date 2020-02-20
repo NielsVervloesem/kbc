@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:converters="clr-namespace:KBCFoodAndGo.Shared.Converters;assembly=KBCFoodAndGo.Shared"
+             mc:Ignorable="d"
+             x:Class="KBCFoodAndGo.Views.MealDetailView"
+             Title="{Binding Meal.Name}"
+             BindingContext="Meal">
+
+    <ContentPage.Resources>
+        <converters:MealCurrencyConverter x:Key="CurrencyConverter"></converters:MealCurrencyConverter>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Command="{Binding NavigateToCommand}" IconImageSource="edit.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <forms:CachedImage 
+                DownsampleToViewSize="true"
+                Source="{Binding Meal.ImageUrl}" Grid.Row="0"
+                Aspect="AspectFill">
+            </forms:CachedImage>
+            <StackLayout Margin="10,5,5,5" Grid.Row="1" Orientation="Vertical">
+                <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Naam"></Label>
+                <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium" Text="{Binding Meal.Name}"></Label>
+
+                <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Beschrijving"></Label>
+                <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium"  Text="{Binding Meal.ShortDescription}"></Label>
+
+                <Label Margin="5" FontAttributes="Bold" FontSize="Large" Text="Prijs"></Label>
+                <Label Margin="5" FontAttributes="Bold" TextColor="#2196F3" FontSize="Medium"  Text="{Binding Meal.Price, Converter={StaticResource CurrencyConverter}}"></Label>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
