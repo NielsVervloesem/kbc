@@ -1,0 +1,5 @@
+0 aws_deeplens
+1 blue_cup
+2 generic_cup
+3 small_bord
+4 yellow_cup 4

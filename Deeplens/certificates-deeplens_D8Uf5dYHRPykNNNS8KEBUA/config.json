@@ -1,0 +1,1 @@
+{"coreThing":{"certPath":"cloud.pem.crt","keepAlive":10,"thingArn":"arn:aws:iot:us-east-1:238023523734:thing\/deeplens_D8Uf5dYHRPykNNNS8KEBUA","keyPath":"cloud.pem.key","ggHost":"greengrass.iot.us-east-1.amazonaws.com","iotHost":"awk85nf4032n8.iot.us-east-1.amazonaws.com","mqttMaxConnectionRetryInterval":10,"caPath":"root-ca.pem"},"runtime":{"cgroup":{"useSystemd":"yes"}}}
